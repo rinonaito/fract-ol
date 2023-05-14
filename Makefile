@@ -6,7 +6,7 @@
 #    By: rnaito <rnaito@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 12:49:08 by rnaito            #+#    #+#              #
-#    Updated: 2023/05/12 14:59:53 by rnaito           ###   ########.fr        #
+#    Updated: 2023/05/14 16:49:54 by rnaito           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,16 +19,21 @@ LIBFT		= ./libft/libft.a
 LIBFT_DIR	= libft/
 
 SRCS		= main.c \
+			  event_handler.c \
+			  pixel_put.c \
+			  mandelbrot.c \
 
 OBJS 		= $(SRCS:%.c=%.o)
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+# CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g 
+# LFLAGS		= -fsanitize=address
 
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $< -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(LFLAGS) $^ -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 %.o%.c: $(LIBFT)
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
