@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pixel_put.c                                        :+:      :+:    :+:   */
+/*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rnaito <rnaito@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rnaito <rnaito@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/14 10:06:17 by rnaito            #+#    #+#             */
-/*   Updated: 2023/05/14 14:02:06 by rnaito           ###   ########.fr       */
+/*   Created: 2023/05/25 15:57:42 by rnaito            #+#    #+#             */
+/*   Updated: 2023/05/26 17:01:22 by rnaito           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	my_mlx_pixel_put(t_data *img_addr, int x, int y, int color)
+int	keypress(int keycode, t_vars *vars)
 {
-	char	*dst;
-
-	dst = img_addr->addr + (y * img_addr->line_length + x * (img_addr->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
+	if (keycode == ESC)
+	{
+		mlx_destroy_window(vars->mlx, vars->win);
+		exit(0);
+	}
+	return (0);
 }
-
